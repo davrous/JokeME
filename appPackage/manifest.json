@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "version": "1.0.0",
+  "id": "${{TEAMS_APP_ID}}",
+  "packageName": "com.microsoft.teams.extension",
+  "developer": {
+    "name": "Teams App, Inc.",
+    "websiteUrl": "https://www.davrous.com",
+    "privacyUrl": "https://www.davrous.com",
+    "termsOfUseUrl": "https://www.example.com/privacy"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "JokeME-${{TEAMSFX_ENV}}",
+    "full": "Full name for JokeME"
+  },
+  "description": {
+    "short": "Joke API",
+    "full": "Return a Programming, Miscellaneous, Pun, Spooky or Christmas joke using JokeAPI"
+  },
+  "accentColor": "#FFFFFF",
+  "composeExtensions": [
+    {
+      "composeExtensionType": "apiBased",
+      "apiSpecificationFile": "apiSpecificationFiles/openapi.yaml",
+      "commands": [
+        {
+          "context": [
+            "compose"
+          ],
+          "type": "query",
+          "title": "",
+          "id": "getAnyJoke",
+          "parameters": [
+            {
+              "name": "contains",
+              "title": "Contains",
+              "description": "Find a joke containing this keyword"
+            }
+          ],
+          "description": "Return a Programming, Miscellaneous, Pun, Spooky or Christmas joke",
+          "apiResponseRenderingTemplateFile": "responseTemplates/getAnyJoke.json"
+        }
+      ]
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": []
+}

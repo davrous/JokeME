@@ -1,0 +1,81 @@
+{
+  "version": "devPreview",
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.ResponseRenderingTemplate.schema.json",
+  "jsonPath": "$",
+  "responseLayout": "list",
+  "responseCardTemplate": {
+    "type": "AdaptiveCard",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.5",
+    "body": [
+      {
+        "$when": "${error == true}",
+        "type": "Image",
+        "url": "https://david.blob.core.windows.net/images/CryingNoFound.jpeg",
+        "size": "Large"
+      },
+      {
+        "$when": "${error == true}",
+        "type": "TextBlock",
+        "text": "***No joke were found! :-(***",
+        "color": "warning",
+        "wrap": true
+      },
+      {
+        "$when": "${category == 'Christmas'}",
+        "type": "Image",
+        "url": "https://david.blob.core.windows.net/images/GeekySanta.jpeg",
+        "size": "Large"
+      },
+      {
+        "$when": "${category == 'Programming'}",
+        "type": "Image",
+        "url": "https://david.blob.core.windows.net/images/FunnyProgrammingGuy.jpeg",
+        "size": "Large"
+      },
+      {
+        "$when": "${category == 'Spooky'}",
+        "type": "Image",
+        "url": "https://david.blob.core.windows.net/images/SppokyFunny.jpeg",
+        "size": "Large"
+      },
+      {
+        "$when": "${category == 'Pun'}",
+        "type": "Image",
+        "url": "https://david.blob.core.windows.net/images/punjokes.jpeg",
+        "size": "Large"
+      },
+      {
+        "$when": "${category == 'Misc'}",
+        "type": "Image",
+        "url": "https://david.blob.core.windows.net/images/miscjokes.jpeg",
+        "size": "Large"
+      },
+      {
+        "$when": "${type == 'single'}",
+        "type": "TextBlock",
+        "text": "***${if(joke, joke, 'N/A')}***",
+        "color": "accent",
+        "wrap": true
+      },
+      {
+        "$when": "${type == 'twopart'}",
+        "type": "TextBlock",
+        "text": "${if(setup, setup, 'N/A')}",
+        "style": "heading",
+        "wrap": true
+      },
+      {
+        "$when": "${type == 'twopart'}",
+        "type": "TextBlock",
+        "text": "_${if(delivery, delivery, 'N/A')}_",
+        "color": "accent",
+        "wrap": true
+      }
+    ]
+  },
+  "previewCardTemplate": {
+    "title": "${if(category, category, 'No joke were found! :-(')}",
+    "subtitle": "${if(joke, joke, setup)}"
+  }
+}

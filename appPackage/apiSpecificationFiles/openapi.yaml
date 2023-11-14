@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: Joke API
+  description: >-
+    Return a Programming, Miscellaneous, Pun, Spooky or Christmas joke using
+    JokeAPI
+  version: 1.0.0
+servers:
+  - url: https://v2.jokeapi.dev
+paths:
+  /joke/Programming,Miscellaneous,Pun,Spooky,Christmas:
+    get:
+      description: Return a Programming, Miscellaneous, Pun, Spooky or Christmas joke
+      operationId: getAnyJoke
+      parameters:
+        - description: Find a joke containing this keyword
+          in: query
+          name: contains
+          schema:
+            type: string
+          required: true
+        - description: blacklistFlags
+          in: query
+          name: blacklistFlags
+          schema:
+            default: nsfw,religious,political,racist,sexist,explicit
+            example: nsfw,religious,political,racist,sexist,explicit
+            type: string
+          required: false
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              examples:
+                example-0001:
+                  value:
+                    category: Programming
+                    delivery: Because they didn't Node how to Express themself!
+                    error: false
+                    flags:
+                      explicit: false
+                      nsfw: false
+                      political: false
+                      racist: false
+                      religious: false
+                      sexist: false
+                    id: 154
+                    lang: en
+                    safe: true
+                    setup: Why was the JavaScript developer sad?
+                    type: twopart
+              schema:
+                additionalProperties: false
+                properties:
+                  category:
+                    type: string
+                  delivery:
+                    type: string
+                  error:
+                    type: boolean
+                  flags:
+                    additionalProperties: false
+                    properties:
+                      explicit:
+                        type: boolean
+                      nsfw:
+                        type: boolean
+                      political:
+                        type: boolean
+                      racist:
+                        type: boolean
+                      religious:
+                        type: boolean
+                      sexist:
+                        type: boolean
+                    title: Flags
+                    type: object
+                  id:
+                    type: integer
+                  lang:
+                    type: string
+                  safe:
+                    type: boolean
+                  setup:
+                    type: string
+                  type:
+                    type: string
+                title: JokeAnyGetResponse
+                type: object
